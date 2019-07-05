@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[test]]></title>
-    <url>%2Fposts%2Fd87f7e0c%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[docker项目，java获取到的时间少8小时]]></title>
+    <url>%2Fposts%2F551c5ba%2F</url>
+    <content type="text"><![CDATA[第一种方式首先进入docker容器1docker exec -it 容器id /bin/bash 安装vim（由于docker没有vim）1234# apt-get update...# apt-get install vim... 使用以下代码测试1234567import java.util.Date;public class TestDate &#123; public static void main(String[] args) throws Exception &#123; System.out.println(new Date()); &#125;&#125; 12345root@24a54801f06f:/usr# javac TestDate.javaroot@24a54801f06f:/usr# java TestDateThu Nov 01 07:05:37 UTC 2018root@24a54801f06f:/usr# dateThu Nov 1 15:09:55 CST 2018 在docker执行以下命令正常123root@24a54801f06f:/usr# echo &quot;Asia/Shanghai&quot; &gt; /etc/timezoneroot@24a54801f06f:/usr# java TestDateThu Nov 01 15:12:06 CST 2018 第二种方式在dockerFile增加如下配置12ENV TZ=PRCRUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone 最后重启docker服务，项目获取时间正常]]></content>
+      <categories>
+        <category>运维</category>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
   </entry>
 </search>
